@@ -1,0 +1,15 @@
+spring.jpa:
+  database: POSTGRESQL
+  hibernate.ddl-auto: none
+  show-sql: true
+
+jwt:
+  secret: 'super_sercret_rai'
+  expiration: 86400000
+
+spring.datasource:
+  platform: postgres
+  driverClassName: org.postgresql.Driver
+  url: jdbc:postgresql://localhost:5432/whereismypet-db
+  username: postgres
+  password: postgres
