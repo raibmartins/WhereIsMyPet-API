@@ -1,5 +1,6 @@
-package com.unesc.net.WhereIsMyPet.auth;
+package com.unesc.net.WhereIsMyPet.resources.auth;
 
+import com.unesc.net.WhereIsMyPet.auth.*;
 import com.unesc.net.WhereIsMyPet.entity.user.Usuario;
 import com.unesc.net.WhereIsMyPet.repository.user.UserRepository;
 import org.modelmapper.ModelMapper;

@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 @Component
 public class FilterToken extends OncePerRequestFilter {
@@ -31,11 +32,10 @@ public class FilterToken extends OncePerRequestFilter {
             authorization = authorization.replace("Bearer ", "");
 
             String subject = this.tokenService.getSubject(authorization);
-            if (this.userRepository.findUserByEmail(subject).isPresent()) {
-                Usuario usuario = this.userRepository.findUserByEmail(subject).get();
-
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario.getNome(), usuario.getSenha());
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+            Optional<Usuario> userByEmail = this.userRepository.findUserByEmail(subject);
+            if (userByEmail.isPresent()) {
+                Usuario usuario = userByEmail.get();
+                SecurityContextHolder.getContext().setAuthentication(usuario);
             }
         }
         filterChain.doFilter(request, response);

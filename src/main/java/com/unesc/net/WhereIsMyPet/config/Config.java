@@ -1,13 +1,10 @@
 package com.unesc.net.WhereIsMyPet.config;
 
-import com.unesc.net.WhereIsMyPet.auth.AuthService;
 import com.unesc.net.WhereIsMyPet.auth.FilterToken;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -25,17 +22,24 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class Config {
 
     @Autowired
-    private AuthService authService;
-
-    @Autowired
     private FilterToken filterToken;
+
+    public static final String[] PUBLIC_POSTS = new String[]{
+            "/petsLocation", "/auth/*"
+    };
+
+    public static final String[] PUBLIC_GETS = new String[]{
+            "/pets/getNumeros"
+    };
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeHttpRequests().antMatchers(HttpMethod.POST, "/auth/*").permitAll()
+                .authorizeHttpRequests()
+                .antMatchers(HttpMethod.POST, PUBLIC_POSTS).permitAll()
+                .antMatchers(HttpMethod.GET, PUBLIC_GETS).permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(filterToken, UsernamePasswordAuthenticationFilter.class)
                 .build();

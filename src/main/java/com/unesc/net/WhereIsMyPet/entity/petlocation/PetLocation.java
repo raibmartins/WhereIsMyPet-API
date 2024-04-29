@@ -29,6 +29,7 @@ public class PetLocation implements Serializable {
     private String latitude;
 
     private String longitude;
+    private String bateria;
 
 
 }
