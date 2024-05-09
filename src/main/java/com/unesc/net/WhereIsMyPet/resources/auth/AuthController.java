@@ -1,5 +1,6 @@
 package com.unesc.net.WhereIsMyPet.resources.auth;
 
+import com.google.common.base.Verify;
 import com.unesc.net.WhereIsMyPet.auth.*;
 import com.unesc.net.WhereIsMyPet.entity.user.Usuario;
 import com.unesc.net.WhereIsMyPet.repository.user.UserRepository;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -64,6 +66,12 @@ public class AuthController {
                 .email(register.email())
                 .nome(register.nome())
                 .build();
+    }
+
+    @PostMapping(value = "verify")
+    public ResponseEntity<UserAccess> verify() {
+        Usuario authentication = (Usuario) SecurityContextHolder.getContext().getAuthentication();;
+        return this.login(new Login(authentication.getEmail(), authentication.getPassword()));
     }
 
 }

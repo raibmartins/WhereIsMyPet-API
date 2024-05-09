@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
+
 @RestController
 @RequestMapping(value = "petsLocation")
 public class PetLocationController {
@@ -22,6 +24,13 @@ public class PetLocationController {
     @GetMapping
     public ResponseEntity<?> getLocations() {
         return ResponseEntity.ok(this.petLocationService.getLocations());
+    }
+
+    @PostMapping
+    @RequestMapping("sendSmsGetLocation/{id}")
+    public ResponseEntity<?> sendSmsGetLocation(@PathVariable("id") Long petId) {
+        this.petLocationService.sendSmsGetLocation(petId);
+        return ResponseEntity.ok().build();
     }
 
 }

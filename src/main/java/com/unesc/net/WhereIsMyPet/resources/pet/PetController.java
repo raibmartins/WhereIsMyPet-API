@@ -37,7 +37,7 @@ public class PetController {
 
     @PutMapping
     @RequestMapping(value = "excluir/{id}")
-    public ResponseEntity<?> delete(@PathParam("id") Long id) {
+    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
         this.petService.excluir(id);
         return ResponseEntity.ok().build();
     }

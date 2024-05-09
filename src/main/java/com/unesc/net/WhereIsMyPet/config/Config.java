@@ -25,7 +25,9 @@ public class Config {
     private FilterToken filterToken;
 
     public static final String[] PUBLIC_POSTS = new String[]{
-            "/petsLocation", "/auth/*"
+            "/petsLocation",
+            "/auth/login",
+            "/auth/register"
     };
 
     public static final String[] PUBLIC_GETS = new String[]{

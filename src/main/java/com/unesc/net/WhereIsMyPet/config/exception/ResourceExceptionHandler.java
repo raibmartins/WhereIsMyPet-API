@@ -1,5 +1,6 @@
 package com.unesc.net.WhereIsMyPet.config.exception;
 
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -32,5 +33,9 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
     }
 
-
+    @ExceptionHandler(value = {TokenExpiredException.class})
+    public ResponseEntity<StandardError> tokenExpired(ConstraintViolationException e, HttpServletRequest request) {
+        StandardError err = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "Token expirado", request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+    }
 }

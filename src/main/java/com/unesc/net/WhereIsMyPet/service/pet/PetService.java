@@ -24,6 +24,10 @@ public class PetService extends AbstractService {
         return this.petRepository.save(pet);
     }
 
+    public Pet getPet(Long id) {
+        return this.petRepository.findById(id).orElseThrow(() -> new ValidationException("Animal não encontrado."));
+    }
+
     public List<Pet> getPets() {
         return this.petRepository.findAllByUsuario(this.getUsuario().getId());
     }
@@ -44,7 +48,7 @@ public class PetService extends AbstractService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     public Pet excluir(Long id) {
-        Pet pet = this.petRepository.findById(id).orElseThrow(() -> new ValidationException("Animal não encontrado."));
+        Pet pet = this.getPet(id);
         if (pet.getUsuario().getId() != this.getUsuario().getId()) {
             throw new ValidationException("Você não pode alterar este animal.");
         }

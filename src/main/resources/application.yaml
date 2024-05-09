@@ -12,3 +12,7 @@ spring.datasource:
   url: jdbc:postgresql://localhost:5432/whereismypet-db
   username: postgres
   password: postgres
+
+google:
+  firebase:
+    token: cTVRypQARVOktDIdXdLOWu:APA91bGFow9goS1DGFjkiTRz5g0zxJ34k59Fy3zl7csF3YV3EuMESAic8V5TQD0ZMwq7tbTfIpFfgkkA6gpaz15h0Ep2xD_vLQjaWHsYTNms-s4L4yi0cBaBQ54YpFoXYpoYB9aTWtib
