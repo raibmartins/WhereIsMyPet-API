@@ -1,6 +1,6 @@
 spring.jpa:
   database: POSTGRESQL
-  hibernate.ddl-auto: none
+  hibernate.ddl-auto: create
   show-sql: true
 
 jwt:
@@ -9,7 +9,7 @@ jwt:
 
 spring.datasource:
   driverClassName: org.postgresql.Driver
-  url: jdbc:postgresql://localhost:5432/whereismypet-db
+  url: jdbc:postgresql://localhost:5432/whereismypetdb
   username: postgres
   password: postgres
 
