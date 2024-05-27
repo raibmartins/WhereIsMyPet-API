@@ -1,16 +1,13 @@
 package com.unesc.net.WhereIsMyPet.service.petlocation;
 
-import com.google.cloud.firestore.Firestore;
-import com.google.firebase.cloud.FirestoreClient;
 import com.google.firebase.messaging.*;
 import com.unesc.net.WhereIsMyPet.entity.pet.Pet;
 import com.unesc.net.WhereIsMyPet.entity.petlocation.PetLocation;
 import com.unesc.net.WhereIsMyPet.entity.petlocation.SavePetLocationDTO;
 import com.unesc.net.WhereIsMyPet.entity.petlocationrequest.PetLocationRequests;
-import com.unesc.net.WhereIsMyPet.repository.pet.PetRepository;
 import com.unesc.net.WhereIsMyPet.repository.petlocation.PetLocationRepository;
 import com.unesc.net.WhereIsMyPet.repository.petlocationrequest.PetLocationRequestRepository;
-import com.unesc.net.WhereIsMyPet.resources.petlocation.PetLocationDto;
+import com.unesc.net.WhereIsMyPet.entity.petlocation.PetLocationDto;
 import com.unesc.net.WhereIsMyPet.service.pet.PetService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ValidationException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -82,10 +77,10 @@ public class PetLocationService {
     public void sendSmsGetLocation(Long petId) {
         Pet pet = this.petService.getPet(petId);
         if (pet != null) {
-            PetLocationRequests hasPetLocationRequest = this.petLocationRequestRepository.findHasPetLocationRequest(pet.getId());
-            if (hasPetLocationRequest == null) {
+//            PetLocationRequests hasPetLocationRequest = this.petLocationRequestRepository.findHasPetLocationRequest(pet.getId());
+//            if (hasPetLocationRequest == null) {
                 try {
-//                    this.firebaseMessaging.send(this.buildMessage(pet));
+                    this.firebaseMessaging.send(this.buildMessage(pet));
                     this.petLocationRequestRepository.save(
                             PetLocationRequests.builder()
                                     .pet(pet)
@@ -95,10 +90,10 @@ public class PetLocationService {
                 } catch (Exception e) {
                     throw new ValidationException("Erro ao solicitar a localização do animal");
                 }
-            } else {
-                LocalDateTime localDateTime = hasPetLocationRequest.getDataHoraSolicitacao().plusMinutes(5);
-                throw new ValidationException(String.format("Você deve esperar até %s para realizar isto novamente.", localDateTime.toLocalTime().getHour() + ":" + localDateTime.toLocalTime().getMinute()));
-            }
+//            } else {
+//                LocalDateTime localDateTime = hasPetLocationRequest.getDataHoraSolicitacao().plusMinutes(5);
+//                throw new ValidationException(String.format("Você deve esperar até %s para realizar isto novamente.", localDateTime.toLocalTime().getHour() + ":" + localDateTime.toLocalTime().getMinute()));
+//            }
         }
     }
 
@@ -106,9 +101,9 @@ public class PetLocationService {
         return Message.builder()
                 .setToken(firebaseToken)
                 .setNotification(
-                        Notification.builder()
-                                .setBody(pet.getTelefone())
-                                .build())
+                    Notification.builder()
+                            .setBody(pet.getTelefone())
+                            .build())
                 .build();
     }
 

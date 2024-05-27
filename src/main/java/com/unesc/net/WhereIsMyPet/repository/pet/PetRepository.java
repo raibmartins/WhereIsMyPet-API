@@ -14,6 +14,7 @@ public interface PetRepository extends JpaRepository<Pet, Long> {
     @Query("select p from Pet p where p.usuario.id = ?1 and p.excluido is false")
     List<Pet> findAllByUsuario(Long usuarioId);
 
+    @Query("select p from Pet p where p.telefone = ?1 and p.excluido is false")
     Pet findByTelefone(String telefone);
 
     @Query("select p.telefone from Pet p where p.excluido is false")

@@ -34,16 +34,19 @@ public class PetService extends AbstractService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     public Pet save(PetRegister petRegister) {
-        return this.save(
-                Pet.builder()
-                        .id(petRegister.id())
-                        .usuario(this.getUsuario())
-                        .excluido(petRegister.excluido())
-                        .imagem(petRegister.imagem())
-                        .nome(petRegister.nome())
-                        .telefone(petRegister.telefone())
-                        .build()
-        );
+        if (this.findByTelefone(petRegister.telefone()) == null) {
+            return this.save(
+                    Pet.builder()
+                            .id(petRegister.id())
+                            .usuario(this.getUsuario())
+                            .excluido(petRegister.excluido())
+                            .imagem(petRegister.imagem())
+                            .nome(petRegister.nome())
+                            .telefone(petRegister.telefone())
+                            .build()
+            );
+        }
+        throw new ValidationException("Já existe um animal registrado com esse telefone");
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

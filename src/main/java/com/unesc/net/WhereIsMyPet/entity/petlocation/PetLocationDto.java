@@ -1,4 +1,4 @@
-package com.unesc.net.WhereIsMyPet.resources.petlocation;
+package com.unesc.net.WhereIsMyPet.entity.petlocation;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

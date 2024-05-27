@@ -1,6 +1,7 @@
+
 spring.jpa:
   database: POSTGRESQL
-  hibernate.ddl-auto: create
+  hibernate.ddl-auto: none
   show-sql: true
 
 jwt:
@@ -16,3 +17,5 @@ spring.datasource:
 google:
   firebase:
     token: cTVRypQARVOktDIdXdLOWu:APA91bGFow9goS1DGFjkiTRz5g0zxJ34k59Fy3zl7csF3YV3EuMESAic8V5TQD0ZMwq7tbTfIpFfgkkA6gpaz15h0Ep2xD_vLQjaWHsYTNms-s4L4yi0cBaBQ54YpFoXYpoYB9aTWtib
+server:
+  port: 8082
