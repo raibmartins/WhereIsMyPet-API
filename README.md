@@ -1,6 +1,6 @@
 # MODULO DE INTERFACE DE PROGRAMAÇÃO DE APLICAÇÃO - WHERE IS MY PET (API)
 
-Este projeto é uma API desenvolvida em Java 17 usando o framework Spring Boot. Ele é projetado para fornecer uma interface de programação de aplicativos (API) robusta e escalável.
+Este projeto é uma API desenvolvida em Java 17 usando o framework Spring Boot. Ele é projetado para fornecer uma interface de programação de aplicativos (API) robusta e escalável. Utilizado no trabalho de conclusão de curso para a Universidade do Extremo Sul Catarinense (UNESC)
 
 ## Requisitos
 
