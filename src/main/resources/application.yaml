@@ -16,6 +16,6 @@ spring.datasource:
 
 google:
   firebase:
-    token: cTVRypQARVOktDIdXdLOWu:APA91bGFow9goS1DGFjkiTRz5g0zxJ34k59Fy3zl7csF3YV3EuMESAic8V5TQD0ZMwq7tbTfIpFfgkkA6gpaz15h0Ep2xD_vLQjaWHsYTNms-s4L4yi0cBaBQ54YpFoXYpoYB9aTWtib
+    token: cc1DtdSwTTu3luX4uqmx8K:APA91bF_JG3lYIPAId1kyjacCGZTn0k_azoxoSOUCFXoODZN9qh5FL5R21JwN_fZgbvi39zOifQkkW4cBfhzxTD-AlJ-oNVi2Dk8FEUZLwyWSLh5CQKw3c2L8VYBzpuvAbrPJvK90xsj
 server:
   port: 8082
