@@ -13,7 +13,7 @@ Este projeto é uma API desenvolvida em Java 17 usando o framework Spring Boot. 
 1. **Clone o repositório:**
 
    ```bash
-   git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/raibmartins/WhereIsMyPet-Api)
+   git clone https://github.com/raibmartins/WhereIsMyPet-Api
    cd seu-repositorio
    ```
 2. **Configure o ambiente:**
